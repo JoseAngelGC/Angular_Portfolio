@@ -1,13 +1,13 @@
 import { formatDate } from '@angular/common';
 
-export function convertDateToRequest(date, format: 'date' | 'datetime' | 'periodo') {
+export function convertDateToRequest(date: any, format: 'date' | 'datetime' | 'periodo') {
     switch (format) {
         case "date":
-            return date == null ? null : formatDate(new Date(date), 'yyyy-MM-dd', 'en-ES');
+            return date == null ? '' : formatDate(new Date(date), 'yyyy-MM-dd', 'en-ES');
         case "periodo":
-            return date == null ? null : formatDate(new Date(date), 'yyyy-MM', 'en-US');
+            return date == null ? '' : formatDate(new Date(date), 'yyyy-MM', 'en-US');
         case "datetime":
-            return date == null ? null : formatDate(new Date(date), 'yyyy-MM-dd hh:mm:ss', 'en-US');
+            return date == null ? '' : formatDate(new Date(date), 'yyyy-MM-dd hh:mm:ss', 'en-US');
 
     }
 }

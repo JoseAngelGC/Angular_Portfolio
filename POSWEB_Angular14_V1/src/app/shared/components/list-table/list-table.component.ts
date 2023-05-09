@@ -124,8 +124,8 @@ export class ListTableComponent<T> implements OnInit, OnChanges, AfterViewInit {
 
                     let sort = this.sort.active
                     let size = this.paginator.pageSize
-
                     this.spinner.show('modal-table');
+                    
                     return this.service!.GetAll(
                         size, sort, this.sort.direction, this.paginator.pageIndex, this.getInputs, this.id, this.id2);
                 }),
@@ -134,14 +134,14 @@ export class ListTableComponent<T> implements OnInit, OnChanges, AfterViewInit {
                     // Flip flag to show that loading has finished.
                     this.spinner.hide('modal-table');
                     // this.isRateLimitReached = false;
-                    this.resultsLength = data.data.totalRecords;
-
+                    this.resultsLength = data.records;
+                                        
                     this.isFirstLoad = false
                     
                     // foreach para detectar cuales ya estan seleccionados
                     if(this.selected) {                      
-
-                        data.data.items.forEach( element => {
+                        
+                        data.data.forEach( element => {
                             
                             this.selected.forEach(seletedItem => {
                               if (element[this.selectedCompareAttr] == seletedItem[this.selectedCompareAttr]) {
@@ -152,7 +152,8 @@ export class ListTableComponent<T> implements OnInit, OnChanges, AfterViewInit {
                         
                     }
                                   
-                    return data.data.items
+                    //return data.data.items
+                    return data.data
 
                 }),
                 catchError((e) => {
